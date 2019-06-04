@@ -4,7 +4,7 @@ Heavily modified fork of https://github.com/spieglt/fb-delete.  Credit goes to s
 
 GUI wrapper around a modified version of spieglt's code.  Punch in your username and password, select categories of data you want to delete, along with the years and months, and let the scripts clean up your awkward posts from your college years! :)
 
-**Don't forget to back up your FB first! https://www.facebook.com/help/131112897028467 **
+**Don't forget to back up your FB first! https://www.facebook.com/help/131112897028467  I am NOT responsible if this ends up nuking your favorite memories, so BE CAREFUL.**
 
 As with spieglt's original code, none of your data (username, password, or anything else) is sent to me or anywhere other than Facebook's servers. It does not install a browser plugin. This is your computer talking to facebook.com by way of a Node script/Puppeteer. Puppeteer is a Node package developed by Google's Chrome team and allows you to drive a Chrome window programmatically.
 
@@ -26,12 +26,6 @@ If you rather build from source, or you are on Windows, do this instead:
 * Then run `npm start`.
 
 
-
-# Inspiration
-- http://www.jaruzel.com/blog/How-I-Erased-5000-Facebook-Comments-and-Likes
-- Desire to use Facebook for keeping in touch with distant friends and family despite their numerous failures to protect/respect users' data and privacy
-- Displeasure at their interface's lack of batch-deletion, and not wanting to click "Delete" thousands of times
-
 # Description
 First: backup your Facebook data: https://www.facebook.com/help/131112897028467 (recommended, just in case)
 
@@ -43,7 +37,7 @@ None of your data (username, password, or anything else) is sent to me or anywhe
 # Disclaimer 
 I accept no responsiblity if this program mucks up your FB or deletes anything you rather keep.  If you are worried about that, I recommend not using this program. :)
 
-Also remember, nothing is truly gone from the internet. That being said, it does help to clean up your FB once in awhile. :)
+Also remember, ***nothing is truly gone from the internet.*** This data is probably stored somewhere else, even if you "delete" it from your account. That being said, it does help to clean up your FB once in awhile. You might not be able to hide from the NSA, but you can hide from nosey Joe Schmoes. :)
 
 **IF YOU SELECT THE CATEGORY "Added Friends" FOR 2017, IT WILL UNFRIEND EVERY PERSON YOU BECAME FRIENDS WITH IN 2017!**
 
