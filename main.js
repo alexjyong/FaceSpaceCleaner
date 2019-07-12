@@ -22,6 +22,17 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+    mainWindow.on('will-navigate', handleRedirect)
+    mainWindow.on('new-window', handleRedirect)
+
+}
+
+var handleRedirect = (e, url) => {
+  if(url != mainWindow.getURL()) {
+    e.preventDefault()
+    require('electron').shell.openExternal(url)
+  }
 }
 
 // This method will be called when Electron has finished

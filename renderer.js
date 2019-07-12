@@ -6,3 +6,4 @@
 window.$ = window.jQuery = require('jquery')
 window.Bootstrap = require('bootstrap')
 window.Bootstrap_Select = require('bootstrap-select')
+window.Electron = require('electron');

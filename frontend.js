@@ -1,6 +1,9 @@
 $( document ).ready(function() {
 
-
+	$(document).on('click', 'a[href^="http"]', function(event) {
+        event.preventDefault();
+        window.Electron.shell.openExternal(this.href);
+    });
         $('#modal_show').click(function() {
             $('.modal').modal('show')
         });

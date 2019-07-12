@@ -13,10 +13,10 @@
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.0.0-beta.3",
+    "bootstrap-select": "file:./bootstrap-select",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.9",
-    "puppeteer": "^1.2.0",
-    "bootstrap-select": "file:./bootstrap-select"
+    "puppeteer": "^1.18.1"
   },
   "repository": "https://github.com/alexjyong/facespace-cleaner",
   "devDependencies": {
