@@ -12,8 +12,6 @@ $( document ).ready(function() {
             event.preventDefault();
             //run the facebook module
             //
-            //TODO: error handling for bad inputs.
-
 
             var username = $("#username").val();
             var password = $("#password").val();
@@ -41,6 +39,19 @@ $( document ).ready(function() {
                 alert("You need to select some months yo.");
                 return;
             }
+
+            if (twofactor) {
+                var r = confirm("Two factor support in the application at this time is a bit rough, and may not work. You may be better off disabling two factor on your account, then trying to run this script. Are you sure you want to continue?");
+                if (r){
+
+                }
+                else {
+                    return;
+                }
+
+            }
+
+
             $("#status").val("Running script...");
             var result = delete_fb_stuff.main(username,password,categories,years,months,twofactor).then(function(value) {
                 $("#status").val(value.message);
