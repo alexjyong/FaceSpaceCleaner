@@ -35,30 +35,39 @@ if (debug) {
     console.log("WARNING: In debug mode. Nothing will actually be deleted. :)");
 }
 */
-async function main(username,password,categories,years,months) {
+async function main(username,password,categories,years,months, headless) {
 
-    
+  if (!headless) {
+        headless = false;
+}
     
 
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: headless,
     slowMo: 100 //you don't want to go too fast otherwise you might trip a recaptcha on Facebook's end.
   });
-  page = await browser.newPage();
+  var pages = await browser.pages();
+    page = pages[0];
 
-
+console.log(pages);
   await page.goto('https://mbasic.facebook.com/'); //mbasic facebook I think is the facebook designed for non-smartphone phones (feature phones). It's easier to crawl than the mainstream FB.
   await page.$eval('input[id=m_login_email]', (el, user) => el.value = user, username);
   await page.$eval('input[name=pass]', ((el, pass) => el.value = pass), password);
   await page.$eval('input[name=login]', button => button.click());
-  await page.goto('https://mbasic.facebook.com/');
 
+
+    //check to see if we hit two factor auth
+   if (await page.$('input[name=approvals_code]')) {
+        console.log("Disable two factor auth on your account and re-run this application!");
+        await browser.close();
+        return {"error" :1, "message": "Disable two factor auth and re-run this application!"};
+    }
 //check to see if we didn't log in for some reason.
 //like if user put in wrong password or an old one.
-  if (await page.$('input[name=login]')) {
-    console.log("That login info didn't work. Try again!");
-      return {"error" :1, "message": "That login info didn't work. Try again!"};
-    process.exit(1);
+    else if (await page.$('input[name=login]')) {
+        console.log("That login info didn't work. Try again!");
+        await browser.close();
+        return {"error" :1, "message": "That login info didn't work. Try again!"};
   }
     var return_object = {};
     try {
@@ -66,7 +75,7 @@ async function main(username,password,categories,years,months) {
         
     }
     catch(err) {
-        await page.close()
+        await browser.close();
         return_object = {"error": 1, "message": err}; 
     }
 
@@ -101,7 +110,7 @@ async function next(categories, years, months) {
     await followLinkByContent(categories[i]);
   }
 
-  await page.close();
+    await browser.close();
     return {success: "1", message: "Done! "+ "I deleted "+ deleteCount + " items from your account!"};
 }
 
