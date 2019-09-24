@@ -17,6 +17,7 @@ $( document ).ready(function() {
 
             var username = $("#username").val();
             var password = $("#password").val();
+            var twofactor = $("#twofactor").val();
 
             if (!username || !password || username == "" || password == "") {
                 alert("Username and password are required yo.");
@@ -41,7 +42,7 @@ $( document ).ready(function() {
                 return;
             }
             $("#status").val("Running script...");
-            var result = delete_fb_stuff.main(username,password,categories,years,months).then(function(value) {
+            var result = delete_fb_stuff.main(username,password,categories,years,months,twofactor).then(function(value) {
                 $("#status").val(value.message);
             });
         });

@@ -9,6 +9,12 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600, icon: path.join(__dirname, 'assets/icons/png/icon_32x32@2x.png')})
 
+    //quite win the windows are closed.
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+        app.quit();
+    });
+    mainWindow.setTitle(require('./package.json').name);
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 

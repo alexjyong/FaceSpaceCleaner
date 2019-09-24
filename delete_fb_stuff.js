@@ -8,34 +8,13 @@
 
 
 'use strict';
-/*
-const optionDefinitions = [
-  { name: 'debug', alias: 'd', type: Boolean },
-  { name: 'username', alias: 'u', type: String },
-  { name: 'password', alias: 'p', type: String },
-  { name: 'categories', alias: 'c', type: String, multiple: true},
-  { name: 'years', alias: 'y', type: String, multiple: true},
-  { name: 'months', alias: 'm', type: String, multiple: true}
-]
-*/
 
 const puppeteer = require('puppeteer');
 
 var page;
 var deleteCount =0;
 var debug;
-/*
-var username = options.username;
-var password = options.password;
-var categories = options.categories;
-var years       = options.years;
-var months      = options.months;
-console.log(options);
-if (debug) {
-    console.log("WARNING: In debug mode. Nothing will actually be deleted. :)");
-}
-*/
-async function main(username,password,categories,years,months, headless) {
+async function main(username,password,categories,years,months, twofactor, headless) {
 
   if (!headless) {
         headless = false;
@@ -58,9 +37,23 @@ console.log(pages);
 
     //check to see if we hit two factor auth
    if (await page.$('input[name=approvals_code]')) {
-        console.log("Disable two factor auth on your account and re-run this application!");
-        await browser.close();
-        return {"error" :1, "message": "Disable two factor auth and re-run this application!"};
+        await page.focus('#approvals_code')
+       //page.keyboard.type(twofactor);
+        await page.$eval('#approvals_code', (el, value) => el.value = value, twofactor);
+        console.log(twofactor);
+        await page.$eval('input[id=checkpointSubmitButton-actual-button]', button => button.click());
+
+       //the code worked.
+        if (await page.$('input[value=Continue]')) {
+            await page.$eval('input[value=Continue]', button => button.click());
+        }
+        else {
+            var error_message = "The two-factor you passed in didn't work. Try again.";
+            console.log(error_message);
+            await browser.close();
+            return {"error" :1, "message": error_message};
+        }
+
     }
 //check to see if we didn't log in for some reason.
 //like if user put in wrong password or an old one.
@@ -68,7 +61,9 @@ console.log(pages);
         console.log("That login info didn't work. Try again!");
         await browser.close();
         return {"error" :1, "message": "That login info didn't work. Try again!"};
-  }
+    }
+
+
     var return_object = {};
     try {
       return_object = await next(categories, years, months);
