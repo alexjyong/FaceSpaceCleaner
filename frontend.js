@@ -7,6 +7,9 @@ $( document ).ready(function() {
         $('#modal_show').click(function() {
             $('.modal').modal('show')
         });
+        $('#modal2_show').click(function() {
+            $('#modal2').modal('show')
+        });
         $('#do_it_button').click(function(event) {
             delete_fb_stuff = require('./delete_fb_stuff');
             event.preventDefault();
