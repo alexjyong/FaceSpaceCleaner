@@ -16,33 +16,39 @@
 
 	<form>
 
-        <div class="form-group"> <!-- username -->
-            <label for="username" class="control-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="">
+        <div class="form-group"> <!-- username and password -->
+            <div class="form-row">
+                <div class="col">
+                    <label for="username" class="control-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="">
+                </div>
+                <div class="col">
+                    <label for="password" class="control-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+            </div>
         </div>	
 
-        <div class="form-group"> <!-- password -->
-            <label for="password" class="control-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
-        </div>					
-        
-        <div class="form-group"> <!-- password -->
+        <div class="form-group"> <!-- two factor auth -->
             <label for="twofactor" class="control-label">If you are using two-factor auth, like the authenticator app, punch in the code here.</label>
             <input type="text" class="form-control" id="twofactor" name="twofactor">
         </div>					
                                 
-        <div class="form-group"> <!-- categories -->
-            <label for="categories" class="control-label">Categories</label>
-            <select class="form-control" id="categories" multiple>
-            </select>				
+        <div class="form-group"> <!-- categories years -->
+            <div class="form-row">
+                <div class="col">
+                    <label for="categories" class="control-label">Categories</label>
+                    <select class="form-control" id="categories" multiple>
+                    </select>				
+                </div>
+                <div class="col">
+                    <label for="years" class="control-label">Years</label>
+                    <select class="form-control" id="years" multiple>
+                    </select>					
+                </div>
+            </div>
         </div>
 
-        <div class="form-group"> <!-- years -->
-            <label for="years" class="control-label">Years</label>
-            <select class="form-control" id="years" multiple>
-            </select>					
-        </div>
-        
         <div class="form-group"> <!-- months -->
             <label for="months" class="control-label">Months</label>
             <select class="form-control" id="months" multiple>
