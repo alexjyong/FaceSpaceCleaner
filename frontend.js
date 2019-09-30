@@ -5,7 +5,7 @@ $( document ).ready(function() {
         window.Electron.shell.openExternal(this.href);
     });
         $('#modal_show').click(function() {
-            $('.modal').modal('show')
+            $('#modal1').modal('show')
         });
         $('#modal2_show').click(function() {
             $('#modal2').modal('show')
