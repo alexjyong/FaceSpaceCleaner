@@ -22,7 +22,7 @@ async function main(username,password,categories,years,months, twofactor, headle
 
   const browser = await puppeteer.launch({
     headless: headless,
-    slowMo: 100 //you don't want to go too fast otherwise you might trip a recaptcha on Facebook's end.
+    slowMo: 50 //you don't want to go too fast otherwise you might trip a recaptcha on Facebook's end.
   });
   var pages = await browser.pages();
     page = pages[0];
