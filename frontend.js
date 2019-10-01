@@ -57,7 +57,15 @@ $( document ).ready(function() {
 
             $("#status").val("Running script...");
             var result = delete_fb_stuff.main(username,password,categories,years,months,twofactor).then(function(value) {
-                $("#status").val(value.message);
+
+                if (!value) {
+                    $("#status").val("Fatal error running script!");
+                }
+                else {
+
+                    $("#status").val(value.message);
+                }
+
             });
         });
         //the below code goes and builds up the select options.

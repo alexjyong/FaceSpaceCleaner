@@ -19,7 +19,6 @@ async function main(username,password,categories,years,months, twofactor, headle
   if (!headless) {
         headless = false;
 }
-    
 
   const browser = await puppeteer.launch({
     headless: headless,
@@ -28,7 +27,6 @@ async function main(username,password,categories,years,months, twofactor, headle
   var pages = await browser.pages();
     page = pages[0];
 
-console.log(pages);
   await page.goto('https://mbasic.facebook.com/'); //mbasic facebook I think is the facebook designed for non-smartphone phones (feature phones). It's easier to crawl than the mainstream FB.
   await page.$eval('input[id=m_login_email]', (el, user) => el.value = user, username);
   await page.$eval('input[name=pass]', ((el, pass) => el.value = pass), password);
@@ -46,6 +44,18 @@ console.log(pages);
        //the code worked.
         if (await page.$('input[value=Continue]')) {
             await page.$eval('input[value=Continue]', button => button.click());
+
+            //if facebook locked the account, we need to tell it that things are fine.
+            let review_login_check = await page.evaluate(() => {
+                let check = document.getElementById("checkpoint_title");
+                return check;
+            });
+            if (review_login_check) {
+                await page.$eval('input[id=checkpointSubmitButton-actual-button]', button => button.click()); //click the continue button
+                await page.$eval('input[id=checkpointSubmitButton-actual-button]', button => button.click()); //click the `this was me` button
+                await page.$eval('input[id=checkpointSubmitButton-actual-button]', button => button.click()); //click the `continue` button
+            }
+
         }
         else {
             var error_message = "The two-factor you passed in didn't work. Try again.";
@@ -67,12 +77,11 @@ console.log(pages);
     var return_object = {};
     try {
       return_object = await next(categories, years, months);
-        
     }
     catch(err) {
-        await browser.close();
         return_object = {"error": 1, "message": err}; 
     }
+    await browser.close();
 
     return return_object;
 }
@@ -82,28 +91,28 @@ async function next(categories, years, months) {
       await followLinkByContent('Profile');
       await followLinkByContent('Activity Log');
       await followLinkByContent('Filter');
-  for (let i in categories) {
-    console.log("Deleting category " + categories[i]);
-    await followLinkByContent(categories[i]);
-    for (let j in years) {
-      console.log("In year " + years[j]);
-      try {
+      for (let i in categories) {
+        console.log("Deleting category " + categories[i]);
+        await followLinkByContent(categories[i]);
+        for (let j in years) {
+          console.log("In year " + years[j]);
+          try {
 
-        var d = new Date();
-        var current_year = d.getFullYear();
-        if (years[i] == current_year) {
-            await followLinkByContent('This Month');
+            var d = new Date();
+            var current_year = d.getFullYear();
+            if (years[i] == current_year) {
+                await followLinkByContent('This Month');
+            }
+            else {
+                await followLinkByContent(years[j]);
+            }
+            await deleteYear(years[j], months);
+          } catch(e) {
+            console.log(`Year ${years[j]} not found.`, e);
+          }
         }
-        else {
-            await followLinkByContent(years[j]);
-        }
-        await deleteYear(years[j], months);
-      } catch(e) {
-        console.log(`Year ${years[j]} not found.`, e);
+        await followLinkByContent(categories[i]);
       }
-    }
-    await followLinkByContent(categories[i]);
-  }
 
     await browser.close();
     return {success: "1", message: "Done! "+ "I deleted "+ deleteCount + " items from your account!"};
@@ -166,7 +175,7 @@ async function deletePosts(month, year) {
     //if we found the load more link, means we still gots deleting to do on the month. keep going.
       if (found_more_link) {
         if (debug) {
-            await page.goto(found_more_link); //click on the more link. otherwise, we're stuck in a recursive loop. :)
+            await page.goto(found_more_link); //click on the more link. otherwise, we're stuck in a recursive loop if we aren't deleting posts. :)
         }
         else {
             await deletePosts(month, year);
@@ -177,11 +186,11 @@ async function deletePosts(month, year) {
 
 
 async function getMonthLinks(year, selected_months) {
-  var monthLinks = await page.evaluate((year, selected_months) => {
+    var monthLinks = await page.evaluate((year, selected_months) => {
     var months = ["January", "February", "March", "April", "May", "June", 
       "July", "August", "September", "October", "November", "December"];
     var links = [];
-      var d = new Date();
+    var d = new Date();
     var current_month = months[d.getMonth()];
     var current_year = d.getFullYear();
     const elements = document.querySelectorAll('a');
@@ -213,6 +222,7 @@ async function followLinkByContent(content) {
     if (content == current_year) {
         content = "This Month";
     }
+    console.log(content);
   var link = await page.evaluate((text) => {
     const aTags = document.querySelectorAll('a');
     for (let aTag of aTags) {
@@ -221,6 +231,7 @@ async function followLinkByContent(content) {
       }
     }
   }, content);
+    console.log(link);
   await page.goto(link);
 }
 
