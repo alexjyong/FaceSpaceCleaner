@@ -16,9 +16,11 @@ MacOS/Linux
 
 If you don't want to bother with the source code, download one of the binaries in the release section here: https://github.com/alexjyong/FaceSpace-Cleaner/releases.
 
-Download https://github.com/alexjyong/FaceSpace-Cleaner/releases/download/0.1.0/FaceSpace-Cleaner-darwin-x64.zip if you are using a Mac, or https://github.com/alexjyong/FaceSpace-Cleaner/releases/download/0.1.0/FaceSpace-Cleaner-linux-x64.zip If you are on Linux.
+Download https://github.com/alexjyong/FaceSpace-Cleaner/releases/download/0.1.1/FaceSpace-Cleaner-darwin-x64.zip if you are using a Mac, or https://github.com/alexjyong/FaceSpace-Cleaner/releases/download/0.1.1/FaceSpace-Cleaner-linux-x64.zip If you are on Linux.
+Windows Users download https://github.com/alexjyong/FaceSpace-Cleaner/releases/download/0.1.1/FaceSpace-Cleaner-win32-ia32.zip
 
-If you rather build from source, or you are on Windows, do this instead:
+
+If you rather build from source, do this instead:
 
 * Install Node.js/NPM: https://nodejs.org/en/download/
 * Download the Source code from the https://github.com/alexjyong/FaceSpace-Cleaner/releases link.
