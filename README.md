@@ -14,7 +14,7 @@ If you like what you see, consider some support! I enjoy making these in my free
 
 MacOS/Linux
 
-If you don't want to bother with the source code, download one of the binaries in the release section here: https://github.com/alexjyong/FaceSpace-Cleaner/releases.
+If you don't want to bother with the source code, download one of the binaries in the release section here: https://github.com/alexjyong/FaceSpaceCleaner/releases.
 
 Mac Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-mac-x64.zip
 
