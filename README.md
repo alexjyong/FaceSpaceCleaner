@@ -16,17 +16,17 @@ MacOS/Linux
 
 If you don't want to bother with the source code, download one of the binaries in the release section here: https://github.com/alexjyong/FaceSpace-Cleaner/releases.
 
-Mac Users: https://github.com/alexjyong/FaceSpace-Cleaner/releases/download/0.1.1/FaceSpace-Cleaner-mac-x64.zip
+Mac Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-mac-x64.zip
 
-Windows Users: https://github.com/alexjyong/FaceSpace-Cleaner/releases/download/0.1.1/FaceSpace-Cleaner-windows-ia32.zip
+Windows Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-windows-ia32.zip
 
-Linux Users: https://github.com/alexjyong/FaceSpace-Cleaner/releases/download/0.1.1/FaceSpace-Cleaner-linux-x64.zip
+Linux Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-linux-x64.zip
 
 
 If you rather build from source, do this instead:
 
 * Install Node.js/NPM: https://nodejs.org/en/download/
-* Download the Source code from the https://github.com/alexjyong/FaceSpace-Cleaner/releases link.
+* Download the Source code from the https://github.com/alexjyong/FaceSpaceCleaner/releases link.
 * Open up a command prompt, Run `npm install` to install dependencies, and wait for it to finish.
 * Then run `npm start`.
 
