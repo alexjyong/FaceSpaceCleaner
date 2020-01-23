@@ -16,7 +16,7 @@ MacOS/Linux
 
 If you don't want to bother with the source code, download one of the binaries in the release section here: https://github.com/alexjyong/FaceSpaceCleaner/releases.
 
-Mac Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-mac-x64.zip
+Mac Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-macos-x64.zip
 
 Windows Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-windows-ia32.zip
 
