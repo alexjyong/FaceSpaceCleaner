@@ -18,7 +18,7 @@ async function main(username,password,categories,years,months, twofactor, headle
 
   if (!headless) {
         headless = false;
-}
+  }
 
   const browser = await puppeteer.launch({
     headless: headless,
@@ -257,4 +257,3 @@ async function test() {
 }
 module.exports.test = test;
 module.exports.main = main;
-//main();
