@@ -81,6 +81,8 @@ async function main(username,password,categories,years,months, twofactor, headle
     catch(err) {
         return_object = {"error": 1, "message": err}; 
     }
+
+    //close out browser when we are done
     await browser.close();
 
     return return_object;
@@ -114,7 +116,6 @@ async function next(categories, years, months) {
         await followLinkByContent(categories[i]);
       }
 
-    await browser.close();
     return {success: "1", message: "Done! "+ "I deleted "+ deleteCount + " items from your account!"};
 }
 
