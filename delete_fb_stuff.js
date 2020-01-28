@@ -25,7 +25,7 @@ async function main(username,password,categories,years,months, twofactor, headle
     slowMo: 50 //you don't want to go too fast otherwise you might trip a recaptcha on Facebook's end.
   });
   var pages = await browser.pages();
-    page = pages[0];
+  page = pages[0];
 
   await page.goto('https://mbasic.facebook.com/'); //mbasic facebook I think is the facebook designed for non-smartphone phones (feature phones). It's easier to crawl than the mainstream FB.
   await page.$eval('input[id=m_login_email]', (el, user) => el.value = user, username);
