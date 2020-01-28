@@ -35,10 +35,18 @@ async function main(username,password,categories,years,months, twofactor, headle
 
     //check to see if we hit two factor auth
    if (await page.$('input[name=approvals_code]')) {
+
+        //if we got here but they forgot to pass in two-factor
+        if (!twofactor || twofactor == "") {
+            
+        var error_message = "You didn't pass in a two-factor number, but your account requires it. Please pass one in, or disable two-factor on your account, and try again."
+            console.log(error_message);
+            await browser.close();
+            return {"error" :1, "message": error_message};
+        }
+
         await page.focus('#approvals_code')
-       //page.keyboard.type(twofactor);
         await page.$eval('#approvals_code', (el, value) => el.value = value, twofactor);
-        console.log(twofactor);
         await page.$eval('input[id=checkpointSubmitButton-actual-button]', button => button.click());
 
        //the code worked.
@@ -58,7 +66,14 @@ async function main(username,password,categories,years,months, twofactor, headle
 
         }
         else {
+
+            var pageTitle = await page.title();
+
             var error_message = "The two-factor you passed in didn't work. Try again.";
+            if (pageTitle == "Too Many Login Attempts") {
+                error_message = "Looks like you have been logging in too many times. FB has temporarily blocked you. Please try again later.";
+            }
+
             console.log(error_message);
             await browser.close();
             return {"error" :1, "message": error_message};
@@ -125,10 +140,14 @@ async function deletePosts(month, year) {
             var links = [];
             const deleteElements = document.querySelectorAll('a[href*="allactivity/delete"]');
             const removeElements = document.querySelectorAll('a[href*="allactivity/removecontent"]');
+            const hideElements = document.querySelectorAll('a[href*="allactivity/visibility"]');
             for (const el of deleteElements) {
                 links.push({link:el.href, seen:0});
             }
             for (const el of removeElements) {
+                links.push({link:el.href, seen:0});
+            }
+            for (const el of hideElements) {
                 links.push({link:el.href, seen:0});
             }
             return links;
