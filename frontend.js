@@ -57,6 +57,7 @@ $( document ).ready(function() {
 
         }
 
+        alert("Please do not click anywhere on the browser window that will pop up while the script is running. This will break the application. 😊");
 
         $("#status").val("Running script...");
 
@@ -68,6 +69,7 @@ $( document ).ready(function() {
                 }
                 else {
 
+                    alert(value.message);
                     $("#status").val(value.message);
                 }
 
