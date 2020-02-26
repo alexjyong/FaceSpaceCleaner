@@ -6,6 +6,7 @@ $( document ).ready(function() {
         window.Electron.shell.openExternal(this.href);
     });
 
+	//handle showing the modal on user click.
     $('#modal_show').click(function() {
         $('#modal1').modal('show')
     });
@@ -14,35 +15,36 @@ $( document ).ready(function() {
     });
 
     $('#do_it_button').click(function(event) {
+		 //run the facebook module
         delete_fb_stuff = require('./delete_fb_stuff');
         event.preventDefault();
-        //run the facebook module
-        //
+       
+        
 
         var username = $("#username").val();
         var password = $("#password").val();
         var twofactor = $("#twofactor").val();
 
         if (!username || !password || username == "" || password == "") {
-            alert("Username and password are required yo.");
+            alert("Username and password are required.");
             return;
         }
 
         var categories = $("#categories").val();
         if (!categories || categories =="") {
-            alert("You need to select some categories yo.");
+            alert("You need to select some categories.");
             return;
         }
         //categories = categories.join(" ");
         var years = $("#years").val();
         if (!years || years =="") {
-            alert("You need to select some years yo.");
+            alert("You need to select some years.");
             return;
         }
         //years = years.join(" ");
         var months = $("#months").val();
         if (!months || months == "") {
-            alert("You need to select some months yo.");
+            alert("You need to select some months.");
             return;
         }
 
