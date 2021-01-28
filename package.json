@@ -21,7 +21,7 @@
   "repository": "https://github.com/alexjyong/facespace-cleaner",
   "devDependencies": {
     "command-line-args": "^5.0.2",
-    "electron": "^3.0.3",
+    "electron": "^9.4.0",
     "electron-packager": "^13.1.1"
   }
 }
