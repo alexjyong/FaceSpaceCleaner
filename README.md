@@ -22,7 +22,7 @@ Windows Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0
 
 Linux Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-linux-x64.zip
 
-#Build from Source🚧🚧
+# Build from Source🚧🚧
 If you rather build from source, do this instead:
 
 * Install Node.js/NPM: https://nodejs.org/en/download/
