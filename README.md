@@ -14,7 +14,7 @@ If you like what you see, consider some support! I enjoy making these in my free
 
 If you don't want to bother with the source code, download one of the binaries in the release section here: https://github.com/alexjyong/FaceSpaceCleaner/releases.
 
-Mac Users (This hasn't been updated for Apple Silicon yet, you may need to use `(Rosetta)[https://support.apple.com/en-us/HT211861]`): https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-macos-x64.zip
+Mac Users (This hasn't been updated for Apple Silicon yet, you may need to use [Rosetta](https://support.apple.com/en-us/HT211861) ): https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-macos-x64.zip
 
 Windows Users: https://github.com/alexjyong/FaceSpaceCleaner/releases/download/0.1.1/FaceSpace-Cleaner-windows-ia32.zip
 
